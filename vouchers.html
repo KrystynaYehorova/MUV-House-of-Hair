@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salon</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Radley:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid nav-container">
+        <a class="navbar-brand" href="#"> MUV HOUSE OF HAIR </a>
+      </div>
+      <div class="container-fluid nav-small-menu nav-container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          style="padding: 2px; margin-right: 3px"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse nv" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html"
+                >Strona Główna</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#section-about">O nas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cennik.html">Nasze Usługi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vouchers.html">Vouchery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="shop.html">Sklep</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Kontakt</a>
+            </li>
+            <li></li>
+          </ul>
+        </div>
+        <button
+          class="btn btn-primary btn-kosz-nav"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          <img
+            src="img/cart.svg"
+            alt="shoppingcarts"
+            class="shoppingcart-img"
+          />
+        </button>
+      </div>
+    </nav>
+    <section class="hero-voucher">
+      <div class="voucher-img">
+        <img src="img/voucher1.jpeg" alt="zdjęcie vouchera" />
+        <img
+          class="voucher-img-2"
+          src="img/voucher2.jpeg"
+          alt="zdjęcie vouchera"
+        />
+        <img src="img/voucher3.jpeg" alt="zdjęcie vouchera" />
+      </div>
+      <div class="voucher-opis">
+        <p>
+          VOUCHER PODARUNKOWY <br />
+          Voucher imienny do wykorzystania jednorazowego dla jednej osoby.
+          Wybierz kwotę vouchera. <br />Po opłaceniu otrzymasz maila z Voucherem
+          w PDF, który możesz wydrukować i podarować bliskiej osobie. Voucher
+          można odebrać również w wersji papierowej w salonie. <br />Kwota do
+          wyboru 100, 300, 500, 1000 zł. Ważność vouchera 6 miejscy od dnia
+          zakupu.
+        </p>
+      </div>
+      <div class="voucher-select">
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          onchange="openModal(this)"
+        >
+          <option selected disabled>Wybierz voucher</option>
+          <option value="Voucher 100 zł">Voucher 100 zł</option>
+          <option value="Voucher 300 zł">Voucher 300 zł</option>
+          <option value="Voucher 500 zł">Voucher 500 zł</option>
+          <option value="Voucher 1000 zł">Voucher 1000 zł</option>
+        </select>
+      </div>
+    </section>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <form
+        id="voucher-reservation-form"
+        method="post"
+        action="mail-voucher.php"
+      >
+        <div class="modal-dialog" id="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">
+                Zapraszam do wprowadzenia swoich danych
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+                id="modal-close-button"
+              ></button>
+            </div>
+            <div class="modal-body" id="modal-body">
+              <!-- Ukryte pole dla nazwy vouchera -->
+              <input type="hidden" id="voucher-name" name="voucherName" />
+
+              <h6>Wpisz Własne Imię oraz Nazwisko</h6>
+              <div class="input-group">
+                <input
+                  type="text"
+                  aria-label="First name"
+                  class="form-control"
+                  id="first-name"
+                  name="firstName"
+                  required
+                />
+                <input
+                  type="text"
+                  aria-label="Last name"
+                  class="form-control"
+                  id="last-name"
+                  name="lastName"
+                  required
+                />
+              </div>
+              <h6>Podaj dane osoby, dla której przeznaczony jest voucher</h6>
+              <div class="input-group">
+                <input
+                  type="text"
+                  aria-label="First name"
+                  class="form-control"
+                  id="recipient-first-name"
+                  name="recipientFirstName"
+                  required
+                />
+                <input
+                  type="text"
+                  aria-label="Last name"
+                  class="form-control"
+                  id="recipient-last-name"
+                  name="recipientLastName"
+                  required
+                />
+              </div>
+
+              <div class="form-floating mb-3">
+                <input
+                  type="email"
+                  class="form-control"
+                  id="email"
+                  placeholder="name@example.com"
+                  name="email"
+                  required
+                />
+                <label for="email">Twój adres e-mail</label>
+              </div>
+              <button
+                type="submit"
+                class="btn btn-primary btn-mdl-voucher-reserv"
+                id="modal-confirm-button"
+              >
+                Zarezerwuj
+              </button>
+            </div>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary btn-mdl-voucher-close"
+                data-bs-dismiss="modal"
+                id="modal-close-button"
+              >
+                Zamknij
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!--element na stronie do wyświetlania komunikatu -->
+
+    <footer>
+      <div>
+        <h3>MUV HOUSE OF HAIR</h3>
+        <p style="margin-bottom: 5px">Zapraszamy do konraktu z nami:</p>
+        <a href="mailto:pracowniagj@gmail.com">Email: pracowniagj@gmail.com</a
+        ><br />
+        <a href="tel:+48881322010">Tel: 881 322 010</a>
+        <p style="margin-bottom: 5px; margin-top: 15px">
+          A także możesz nas zaobserować <br />
+          w mediach społecznościowych
+        </p>
+        <a href="https://m.facebook.com/MUVhouseofhair">Facebook</a>
+      </div>
+      <div class="footer-instagram">
+        <a
+          href="https://www.instagram.com/muv_hair?igsh=MTJxZ3VyNzc1b3gwaw%3D%3D&utm_source=qr"
+          >Instagram</a
+        >
+        <div class="img-footer">
+          <img src="img/footer1.jpg" alt="zdjęcie z salonu" />
+          <img src="img/footer2.jpg" alt="zdjęcie z salonu" />
+          <img
+            class="footer-photo-3"
+            src="img/footer3.jpg"
+            alt="zdjęcie z salonu"
+          />
+        </div>
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script>
+      function openModal(selectElement) {
+        var selectedOption = selectElement.value;
+        var voucherNameField = document.getElementById("voucher-name");
+        voucherNameField.value = selectedOption;
+
+        var modalTitle = document.querySelector(".modal-title");
+        var modalBody = document.querySelector(".modal-body");
+        modalTitle.innerText = selectedOption;
+
+        var modal = new bootstrap.Modal(
+          document.getElementById("staticBackdrop")
+        );
+        modal.show();
+      }
+
+      document.getElementById("modal-confirm-button")
+        .addEventListener("click", function () {
+          
+
+          var xhr = new XMLHttpRequest();
+          xhr.open("POST", "mail-voucher.php", true);
+          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          xhr.onload = function () {
+            if (xhr.status === 200) {
+              var response = JSON.parse(xhr.responseText);
+              if (response.result === "success") {
+                alert("Rezerwacja została pomyślnie wysłana! Sprawdz e-mail.");
+                window.location.href = "http://testingstronks.pl/vouchers.html";
+
+              } else {
+                alert("Wystąpił błąd podczas wysyłania wiadomości.");
+              }
+            }
+          };
+          xhr.send();
+        });
+    </script> -->
+
+    <script>
+      async function openModal(selectElement) {
+        var selectedOption = selectElement.value;
+        var voucherNameField = document.getElementById("voucher-name");
+        voucherNameField.value = selectedOption;
+
+        var modalTitle = document.querySelector(".modal-title");
+        var modalBody = document.querySelector(".modal-body");
+        modalTitle.innerText = selectedOption;
+
+        var modal = new bootstrap.Modal(
+          document.getElementById("staticBackdrop")
+        );
+        modal.show();
+      }
+
+      document
+        .getElementById("modal-confirm-button")
+        .addEventListener("click", async function (event) {
+          event.preventDefault();
+          try {
+            const response = await fetch(event.target.form.action, {
+              method: "POST",
+              body: new FormData(event.target.form),
+            });
+
+            if (!response.ok)
+              throw `Pomyłka przy zwróceniu się do serwera: ${response.status}`;
+
+            const contentType = response.headers.get("content-type");
+            if (!contentType || !contentType.includes("application/json")) {
+              throw "Pomyłka opracowania. Odpowiedź nie jest JSON";
+            }
+
+            const json = await response.json();
+            if (json.result === "success") {
+              // Okno alertu z potwierdzeniem wysłania formularza
+              alert("Rezerwacja została pomyślnie wysłana! Sprawdz e-mail.");
+              // Opcjonalnie, możesz przekierować użytkownika na inną stronę
+              window.location.href = "https://muvhouseofhair.pl";
+            } else {
+              console.log(json);
+              throw json.info;
+            }
+          } catch (error) {
+            alert("Wystąpił błąd podczas wysyłania wiadomości.");
+          }
+        });
+    </script>
+  </body>
+</html>

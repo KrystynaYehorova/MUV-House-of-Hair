@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Salon</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Radley:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid nav-container">
+        <a class="navbar-brand" href="#"> MUV HOUSE OF HAIR </a>
+      </div>
+      <div class="container-fluid nav-small-menu nav-container">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          style="padding: 2px; margin-right: 3px"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse nv" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="index.html"
+                >Strona Główna</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="index.html#section-about">O nas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="cennik.html">Nasze Usługi</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="vouchers.html">Vouchery</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="shop.html">Sklep</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="contact.html">Kontakt</a>
+            </li>
+            <li></li>
+          </ul>
+        </div>
+        <button
+          class="btn btn-primary btn-kosz-nav"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasRight"
+          aria-controls="offcanvasRight"
+        >
+          <img
+            src="img/cart.svg"
+            alt="shoppingcarts"
+            class="shoppingcart-img"
+          />
+        </button>
+      </div>
+    </nav>
+    <div
+      class="offcanvas offcanvas-end"
+      tabindex="-1"
+      id="offcanvasRight"
+      aria-labelledby="offcanvasRightLabel"
+    >
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasRightLabel">Twój Koszyk</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <section class="container content-section" id="shopping-cart">
+          <table class="table table-hover table-cart">
+            <thead>
+              <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody class="cart-items"></tbody>
+          </table>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              id="deliveryCheckbox"
+            />
+            <label class="form-check-label" for="deliveryCheckbox">
+              Czy potrzebna dostawa? (+19 zł)
+            </label>
+          </div>
+
+          <div class="cart-total">
+            <strong class="cart-total-title">Do zapłaty</strong>
+            <span
+              class="cart-total-price"
+              style="text-align: right"
+              id="modal-cart-total-price"
+              >PLN 0</span
+            >
+          </div>
+
+          <div class="btn-purchase" style="margin-top: 10%">
+            <div class="btn-purchase" style="margin-top: 10%">
+              <button
+                type="button"
+                class="btn btn-dark btn-purchase"
+                data-bs-toggle="modal"
+                data-bs-target="#staticBackdrop"
+                data-bs-whatever="@mdo"
+              >
+                <i class="fa-solid fa-cart-shopping"></i> Zamówić
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">
+              Zapraszam do wprowadzenia swoich danych
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <span class="input-group-text">Imię</span>
+              <input
+                type="text"
+                id="first-name"
+                name="first-name"
+                class="form-control"
+                aria-label="First name"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text">Nazwisko</span>
+              <input
+                type="text"
+                id="last-name"
+                name="last-name"
+                class="form-control"
+                aria-label="Last name"
+              />
+            </div>
+            <div class="form-floating mb-3">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingInput"
+                placeholder="name@example.com"
+              />
+              <label for="floatingInput">Adres e-mail</label>
+            </div>
+            <!-- Tabela na produkty -->
+            <table class="table table-hover table-cart">
+              <thead>
+                <tr>
+                  <th>Produkt</th>
+                  <th>Cena</th>
+                </tr>
+              </thead>
+              <tbody id="modal-cart-items"></tbody>
+              <tfoot id="modal-cart-footer"></tfoot>
+            </table>
+            <form action="sendmail.php" method="post">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="FakturaCheckbox"
+                  name="FakturaCheckbox"
+                />
+                <label class="form-check-label" for="accept-terms">
+                  Poproszę o wystawienie faktury
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  role="switch"
+                  id="deliveryCheckbox"
+                  name="deliveryCheckbox"
+                  checked
+                />
+                <label class="form-check-label" for="accept-terms">
+                  *Akceptuję
+                  <a href="private.html">regulamin sklepu</a> oraz znam
+                  <a href="private.html">politykę prywatności</a>
+                  i zasady przetwarzania moich danych osobowych.
+                </label>
+              </div>
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary btn-close-modal"
+              data-bs-dismiss="modal"
+            >
+              Zamknij
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary btn-rezerv-modal"
+              id="btn-rezerv-mailer"
+            >
+              Zarezerwuj
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="section-hero-shop" id="product-cards">
+      <div class="container-fluid">
+        <div class="shop-item">
+          <div class="card h-100" style="max-width: 18rem">
+            <img
+              src="img/shop-1.JPG"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">Zestaw HEART OF GLASS</h5>
+              <p class="card-text">
+                Zapewnia intensywne odżywienie przy jednoczesnym wzmocnieniu
+                włókna włosa, dzięki zawartości mieszanki Bond Complex i wyciągu
+                z baobabu. Równoważy niepożądane tony i rozświetla naturalne,
+                jak i kosmetyczne odcienie blondu dzięki zawartości niebieskiego
+                ekstraktu z owoców Jagua.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cena <span class="shop-item-price">220 zł</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 18rem">
+            <img
+              src="img/shop-2.jpg"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title shop-item-title">Zestaw MINU</h5>
+              <p class="card-text">
+                Przedłuża trwałość koloru kosmetycznego. Zapewnia włosom
+                naturalne rozświetlenie i nawilżenie.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cena <span class="shop-item-price">170 zł</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 18rem">
+            <img
+              src="img/shop-3.jpg"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title shop-item-title">Zestaw LOVE SMOOTH</h5>
+              <p class="card-text">
+                Zapewnia efekt gładkich, miękkich i lśniących włosów.
+                Przeciwdziała puszeniu się, silnie wygładza strukturę włosa.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cena <span class="shop-item-price">170 zł</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 18rem">
+            <img
+              src="img/shop-4.jpg"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">Zestaw NOUNOU</h5>
+              <p class="card-text">
+                Głęboko odżywia zniszczone i bardzo suche włosy, ułatwia
+                rozczesywanie. Produkty wzbogacone są o witaminę E- działanie
+                antyoksydacyjne.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i
+                  class="fa-solid fa-cart-shopping"
+                  style="margin-right: 4%; color: #f5f5f5"
+                ></i>
+                Cena <span class="shop-item-price">220 zł</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 18rem">
+            <img
+              src="img/shop-5.jpg"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">Zestaw LOVE SMOOTH</h5>
+              <p class="card-text">
+                Zapewnia efekt gładkich, miękkich i lśniących włosów.
+                Przeciwdziała puszeniu się, silnie wygładza strukturę włosa.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i
+                  class="fa-solid fa-cart-shopping"
+                  style="margin-right: 4%; color: #f5f5f5"
+                ></i>
+                Cena <span class="shop-item-price">170 zł</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 18rem">
+            <img
+              src="img/shop-9.jpg"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">Zestaw MOMO</h5>
+              <p class="card-text">
+                Produkty dla włosów suchych lub odwodnionych. Nawilżająca
+                formuła produktów ułatwia rozczesywanie plączących się włosów,
+                zapewniając im miękkość i jedwabistość.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cena <span class="shop-item-price">170 zł</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 18rem">
+            <img
+              src="img/shop-10.jpg"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">
+                Olejek do włosów OI Oil 135ml
+              </h5>
+              <p class="card-text">
+                Sprawia, że włosy są błyszczące, nawilżone, nie puszą się i są
+                zabezpieczone przed czynnikami środowiskowymi. Zapewnia trwały
+                zapach.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cena <span class="shop-item-price">160 zł</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 18rem">
+            <img
+              src="img/shop-11.jpg"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">
+                Mleczko do włosów OI All In One Milk 135 ml
+              </h5>
+              <p class="card-text">
+                Nadaje połysk i miękkość. Ułatwia rozczesywanie i nawilża,
+                ograniczając puszenie się włosów. Działa przeciwutleniająco i
+                zabezpieczająco przed ciepłem.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cena <span class="shop-item-price">160 zł</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 18rem">
+            <img
+              src="img/shop-6.jpg"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">Zestaw OI</h5>
+              <p class="card-text">
+                Głęboko odżywia i nawilża włosy. Zapewnia ochronę
+                antyoksydacyjną przed promieniami UV. Nadaje włosom miękkość,
+                objętość i połysk. Zmysłowa nuta zapachowa utrzymuje się na
+                długo na włosie.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cena <span class="shop-item-price">200 zł</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="card" style="max-width: 18rem">
+            <img
+              src="img/shop-7.jpg"
+              class="card-img-top shop-item-image"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">Zestaw OI</h5>
+              <p class="card-text">
+                Głęboko odżywia i nawilża włosy. Zapewnia ochronę
+                antyoksydacyjną przed promieniami UV. Nadaje włosom miękkość,
+                objętość i połysk. Zmysłowa nuta zapachowa utrzymuje się na
+                długo na włosie.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop mt-auto shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cena <span class="shop-item-price">200 zł</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- <section class="section-hero-shop" id="product-cards">
+      <div class="container-fluid">
+        <div class="shop-item">
+          <div class="card h-100" style="width: 18rem">
+            <img
+              src="img/shop-1.JPG"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">Zestaw HEART OF GLASS</h5>
+              <p class="card-text">
+                Zapewnia intensywne odżywienie przy jednoczesnym wzmocnieniu
+                włókna włosa, dzięki zawartości mieszanki Bond Complex i wyciągu
+                z baobabu. Równoważy niepożądane tony i rozświetla naturalne,
+                jak i kosmetyczne odcienie blondu dzięki zawartości niebieskiego
+                ekstraktu z owoców Jagua.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="shop-item-price">Cena 220 zł</span>
+              </button>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-2.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title shop-item-title">Zestaw MINU</h5>
+              <p class="card-text">
+                Przedłuża trwałość koloru kosmetycznego. Zapewnia włosom
+                naturalne rozświetlenie i nawilżenie.
+              </p>
+              <button
+                type="button"
+                class="btn btn-primary button-card-shop shop-item-button"
+              >
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="shop-item-price">Cena 170 zł</span>
+              </button>
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-3.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Zestaw LOVE SMOOTH</h5>
+              <p class="card-text">
+                Zapewnia efekt gładkich, miękkich i lśniących włosów.
+                Przeciwdziała puszeniu się, silnie wygładza strukturę włosa.
+              </p>
+              <a href="#" class="btn btn-primary button-card-shop"
+                >Cena 170 zł</a
+              >
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-2.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Zestaw MINU</h5>
+              <p class="card-text">
+                Przedłuża trwałość koloru kosmetycznego. Zapewnia włosom
+                naturalne rozświetlenie i nawilżenie.
+              </p>
+              <a href="#" class="btn btn-primary button-card-shop"
+                >Cena 170 zł</a
+              >
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-5.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Zestaw LOVE SMOOTH</h5>
+              <p class="card-text">
+                Zapewnia efekt gładkich, miękkich i lśniących włosów.
+                Przeciwdziała puszeniu się, silnie wygładza strukturę włosa.
+              </p>
+              <a href="#" class="btn btn-primary button-card-shop"
+                >Cena 170 zł</a
+              >
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-8.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Zestaw NOUNOU</h5>
+              <p class="card-text">
+                Głęboko odżywia zniszczone i bardzo suche włosy, ułatwia
+                rozczesywanie. Produkty wzbogacone są o witaminę E- działanie
+                antyoksydacyjne.
+              </p>
+              <a href="#" class="btn btn-primary button-card-shop"
+                >Cena 170 zł</a
+              >
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-9.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Zestaw MOMO</h5>
+              <p class="card-text">
+                Produkty dla włosów suchych lub odwodnionych. Nawilżająca
+                formuła produktów ułatwia rozczesywanie plączących się włosów,
+                zapewniając im miękkość i jedwabistość.
+              </p>
+              <a href="#" class="btn btn-primary button-card-shop"
+                >Cena 170 zł</a
+              >
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-10.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Olejek do włosów OI Oil 135ml</h5>
+              <p class="card-text">
+                Sprawia, że włosy są błyszczące, nawilżone, nie puszą się i są
+                zabezpieczone przed czynnikami środowiskowymi. Zapewnia trwały
+                zapach.
+              </p>
+              <a href="#" class="btn btn-primary button-card-shop"
+                >Cena 160 zł</a
+              >
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-11.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title">
+                Mleczko do włosów OI All In One Milk 135 ml
+              </h5>
+              <p class="card-text">
+                Nadaje połysk i miękkość. Ułatwia rozczesywanie i nawilża,
+                ograniczając puszenie się włosów. Działa przeciwutleniająco i
+                zabezpieczająco przed ciepłem.
+              </p>
+              <a href="#" class="btn btn-primary button-card-shop"
+                >Cena 160 zł</a
+              >
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-6.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Zestaw OI</h5>
+              <p class="card-text">
+                Głęboko odżywia i nawilża włosy. Zapewnia ochronę
+                antyoksydacyjną przed promieniami UV. Nadaje włosom miękkość,
+                objętość i połysk. Zmysłowa nuta zapachowa utrzymuje się na
+                długo na włosie.
+              </p>
+              <a href="#" class="btn btn-primary button-card-shop"
+                >Cena 200 zł</a
+              >
+            </div>
+          </div>
+          <div class="card" style="width: 18rem">
+            <img
+              src="img/shop-7.jpg"
+              class="card-img-top"
+              alt="zestaw kosmetyków dla włosów"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Zestaw OI</h5>
+              <p class="card-text">
+                Głęboko odżywia i nawilża włosy. Zapewnia ochronę
+                antyoksydacyjną przed promieniami UV. Nadaje włosom miękkość,
+                objętość i połysk. Zmysłowa nuta zapachowa utrzymuje się na
+                długo na włosie.
+              </p>
+              <a href="#" class="btn btn-primary button-card-shop"
+                >Cena 200 zł</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>-->
+    <footer>
+      <div>
+        <h3>MUV HOUSE OF HAIR</h3>
+        <p style="margin-bottom: 5px">Zapraszamy do konraktu z nami:</p>
+        <a href="mailto:pracowniagj@gmail.com">Email: pracowniagj@gmail.com</a
+        ><br />
+        <a href="tel:+48881322010">Tel: 881 322 010</a>
+        <p style="margin-bottom: 5px; margin-top: 15px">
+          A także możesz nas zaobserować <br />
+          w mediach społecznościowych
+        </p>
+        <a href="https://m.facebook.com/MUVhouseofhair">Facebook</a>
+      </div>
+      <div class="footer-instagram">
+        <a
+          href="https://www.instagram.com/muv_hair?igsh=MTJxZ3VyNzc1b3gwaw%3D%3D&utm_source=qr"
+          >Instagram</a
+        >
+        <div class="img-footer">
+          <img src="img/footer1.jpg" alt="zdjęcie z salonu" />
+          <img src="img/footer2.jpg" alt="zdjęcie z salonu" />
+          <img
+            class="footer-photo-3"
+            src="img/footer3.jpg"
+            alt="zdjęcie z salonu"
+          />
+        </div>
+      </div>
+    </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://kit.fontawesome.com/9d9796826b.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js"></script>
+  </body>
+</html>
